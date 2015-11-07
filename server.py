@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, session, flash
 import re
+EMAIL_REGEX = re.compile(r'^[a-za-z0-9\.\+_-]+@[a-za-z0-9\._-]+\.[a-za-z]*$')
 app = Flask(__name__)
 app.secret_key="SecretKeyMePls"
 @app.route('/')
@@ -20,5 +21,16 @@ def submit():
 		# Validates that First and Last Name cannot contain any numbers
 		elif not session['first_name'].isalpha() or not session['last_name'].isalpha():
 			flash("First and Last name must contain only letters!")
-		return redirect('/')
+			return redirect('/')
+		elif len(session['password']) < 9:
+			flash("Password must have more than 8 characters!")
+			return redirect('/')
+		elif not EMAIL_REGEX.match(session['email']):
+			flash("Invalid Email Address!")
+			return redirect('/')
+		elif session['password'] != session['confirm_password']:
+			flash("Password does not match Password Confirmation!")
+			return redirect('/')
+		else:
+			return redirect('/')
 app.run(debug=True)
