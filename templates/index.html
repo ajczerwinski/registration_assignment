@@ -11,6 +11,14 @@
 </head>
 <body>
 	<div id="wrapper">
+		<h3>(make sure that you enter everything correctly!)</h3>
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				{% for message in messages %}
+					<p>{{ message }} </p>
+				{% endfor %}
+			{% endif %}
+		{% endwith %}
 		<form action="/process" method="post">
 			Email:<input type="text" name="email">
 			First Name:<input type="text" name="first_name">
