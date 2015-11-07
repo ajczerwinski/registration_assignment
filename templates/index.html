@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Registration Assignment</title>
+	<!-- linking a css style sheet -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+	<!-- linking a javascript file -->
+	<script type="text/javascript" src='{{ url_for('static', filename='my_script.js') }}'></script>
+	<!-- linking an image -->
+	<img type="text/javascript">
+</head>
+<body>
+	<div id="wrapper">
+		<form action="/process" method="post">
+			Email:<input type="text" name="email">
+			First Name:<input type="text" name="first_name">
+			Last Name:<input type="text" name="last_name">
+			Password:<input type="password" name="password">
+			Confirm Password:<input type="password" name="confirm_password">
+			<input type="submit" value="Submit">
+		</form>
+	</div>
+</body>
+</html>
